@@ -4,8 +4,8 @@ import { PlusCircle } from "lucide-react";
 import { MarcasList } from "./marcas-list";
 import Link from "next/link";
 import { Suspense } from "react";
-export default async function PageMarcas() {
-  
+export default function PageMarcas() {
+ 
   return (
     <section className="p-8">
       <div className="flex items-center justify-between">
@@ -22,8 +22,8 @@ export default async function PageMarcas() {
           </Button>
         </Link>
       </div>
-      <Suspense fallback={<div>Carregando</div>}>
-      <MarcasList />
+      <Suspense fallback={<div className="text-green-400">Carregando</div>}>
+        <MarcasList />
       </Suspense>
     </section>
   );

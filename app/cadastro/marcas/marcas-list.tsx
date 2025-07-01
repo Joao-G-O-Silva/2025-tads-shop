@@ -1,5 +1,4 @@
-"use client";
-
+import { DeleteButton } from "@/components/delete-button";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -14,11 +13,12 @@ import { Edit, Trash } from "lucide-react";
 
 
 export async function MarcasList() {
-  //await new Promise((resolve)=>{setTimeout(resolve,3000)})
-  const response = await fetch('http://localhost:3002/marcas',{
-    cache:'no-store'
-  })
-  const marcas:Marca[] = await response.json();
+   //await new Promise((resolve)=>{setTimeout(resolve,3000)})
+
+   const response = await fetch('http://10.10.67.20:8080/marca',{
+     cache:'no-store'
+   })
+   const marcas:Marca[] = await response.json();
   return (
     <section className="mt-8 rounded-md border">
       <Table>
@@ -30,23 +30,20 @@ export async function MarcasList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {marcas.map((marca)=>(
-          <TableRow key={marca.id}>
-            <TableCell className="font-medium">{marca.id}</TableCell>
-            <TableCell>{marca.nome}</TableCell>
-            <TableCell>
-              <div className="flex gap-2">
-                <Button size="icon">
-                  <Edit />
-                </Button>
-                <Button size="icon" variant="destructive">
-                  <Trash />
-                </Button>
-              </div>
-            </TableCell>
-          </TableRow>
+          {marcas.map((marca) => (
+            <TableRow key={marca.id}>
+              <TableCell className="font-medium">{marca.id}</TableCell>
+              <TableCell>{marca.nome}</TableCell>
+              <TableCell>
+                <div className="flex gap-2">
+                  <Button size="icon">
+                    <Edit />
+                  </Button>
+                  <DeleteButton/>
+                </div>
+              </TableCell>
+            </TableRow>
           ))}
-          
         </TableBody>
       </Table>
     </section>
