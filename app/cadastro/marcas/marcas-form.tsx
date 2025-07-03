@@ -1,16 +1,22 @@
 "use client";
 
-import { criarMarca } from "@/actions/marca-actions";
+import { criarMarca, MaraFormstate } from "@/actions/marca-actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SaveIcon } from "lucide-react";
+import { Loader2Icon, SaveIcon } from "lucide-react";
 import Link from "next/link";
+import { useActionState } from "react";
 
 export function MarcasForm() {
+  const initialState: MaraFormstate = {
+    nome:'',
+  }
+  
+  const [state,formAction,isPending] = useActionState(criarMarca,initialState)
   return (
     <section className="mt-8">
-      <form action={criarMarca} className="max-w-2xl">
+      <form action={formAction} className="max-w-2xl">
         <div className="space-y-4">
           <Label htmlFor="nome">Nome</Label>
           <Input name="nome" />
@@ -22,7 +28,7 @@ export function MarcasForm() {
             </Button>
           </Link>
           <Button type="submit">
-            <SaveIcon />
+            {isPending ? <Loader2Icon/> : <SaveIcon />}
             Salvar
           </Button>
         </div>
