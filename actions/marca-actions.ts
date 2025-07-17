@@ -20,9 +20,6 @@ export async function criarMarca(
     method: "POST",
     body: stringifyFormData(formData),
   });
-  await new Promise((resolve) => {
-    setTimeout(resolve, 3000);
-  });
   return prevState;
   redirect("/cadastro/marcas/");
 }
@@ -35,9 +32,6 @@ export async function editarMarca(
     headers,
     method: "PUT",
     body: stringifyFormData(formData),
-  });
-  await new Promise((resolve) => {
-    setTimeout(resolve, 3000);
   });
   return prevState;
   redirect("/cadastro/marcas/");

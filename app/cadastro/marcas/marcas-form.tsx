@@ -21,7 +21,7 @@ export function MarcasForm({marca}: MarcasFormProps) {
     action,
     initialState
   );
-  console.log(marca)
+ 
   return (
     <section className="mt-8">
       <form action={formAction} className="max-w-2xl">
